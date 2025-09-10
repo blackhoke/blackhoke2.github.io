@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingeniería en Sistemas - TecNM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #004080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    .search-bar {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .search-bar button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #004080;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search-bar button:hover {
+      background: #0066cc;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    table th {
+      background: #004080;
+      color: #fff;
+    }
+    tr:hover {
+      background: #f0f8ff;
+    }
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      th {
+        display: none;
+      }
+      td {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+      td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ingeniería en Sistemas Computacionales en el TecNM</h1>
+    <p>Instituciones, Estados y Especialidades</p>
+  </header>  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre, estado o especialidad...">
+      <button onclick="filterTable()">Buscar</button>
+      <button onclick="showAll()">Mostrar Todos</button>
+      <button onclick="filterByType('federal')">Federales</button>
+      <button onclick="filterByType('descentralizado')">Descentralizados</button>
+    </div><table id="tecnmTable">
+  <thead>
+    <tr>
+      <th>Instituto Tecnológico</th>
+      <th>Estado</th>
+      <th>Página Web</th>
+      <th>Especialidad</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Datos de ejemplo -->
+    <tr data-type="federal">
+      <td data-label="Instituto">Instituto Tecnológico de Tuxtla Gutiérrez</td>
+      <td data-label="Estado">Chiapas</td>
+      <td data-label="Web"><a href="http://www.tuxtla.tecnm.mx" target="_blank">Página</a></td>
+      <td data-label="Especialidad">Tecnologías para cómputo móvil</td>
+      <td data-label="Tipo">Federal</td>
+    </tr>
+    <tr data-type="federal">
+      <td data-label="Instituto">Instituto Tecnológico de Culiacán</td>
+      <td data-label="Estado">Sinaloa</td>
+      <td data-label="Web"><a href="https://www.culiacan.tecnm.mx" target="_blank">Página</a></td>
+      <td data-label="Especialidad">Gestión de tecnologías en negocios</td>
+      <td data-label="Tipo">Federal</td>
+    </tr>
+    <tr data-type="descentralizado">
+      <td data-label="Instituto">Instituto Tecnológico Superior de El Dorado</td>
+      <td data-label="Estado">Sinaloa</td>
+      <td data-label="Web"><a href="http://www.itseldorado.edu.mx" target="_blank">Página</a></td>
+      <td data-label="Especialidad">Tecnologías web y móviles</td>
+      <td data-label="Tipo">Descentralizado</td>
+    </tr>
+    <tr data-type="descentralizado">
+      <td data-label="Instituto">Instituto Tecnológico Superior del Sur de Guanajuato</td>
+      <td data-label="Estado">Guanajuato</td>
+      <td data-label="Web"><a href="http://www.itsur.edu.mx" target="_blank">Página</a></td>
+      <td data-label="Especialidad">Redes, IA, IoT</td>
+      <td data-label="Tipo">Descentralizado</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>  <script>
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#tecnmTable tbody tr");
+      rows.forEach(row => {
+        const cells = row.getElementsByTagName("td");
+        let match = false;
+        for (let i = 0; i < cells.length; i++) {
+          if (cells[i].innerText.toLowerCase().includes(input)) {
+            match = true;
+            break;
+          }
+        }
+        row.style.display = match ? "" : "none";
+      });
+    }
+
+    function showAll() {
+      document.getElementById("searchInput").value = "";
+      const rows = document.querySelectorAll("#tecnmTable tbody tr");
+      rows.forEach(row => row.style.display = "");
+    }
+
+    function filterByType(type) {
+      const rows = document.querySelectorAll("#tecnmTable tbody tr");
+      rows.forEach(row => {
+        if (row.getAttribute("data-type") === type) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  </script></body>
+</html>
