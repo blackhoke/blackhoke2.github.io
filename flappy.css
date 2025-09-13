@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #87CEEB; /* cielo azul */
+}
+
+#gameArea {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  margin: 20px auto;
+  background: #87CEEB;
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+#bird {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 250px;
+  left: 80px;
+  background-image: url('https://img.itch.zone/aW1nLzY1NjEyODIucG5n/original/45zJSl.png');
+  background-size: cover;
+  background-position: center;
+}
+
+}
+
+.obstacle {
+  width: 60px;
+  background: green;
+  position: absolute;
+  bottom: 0;
+}
+
+#score {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
