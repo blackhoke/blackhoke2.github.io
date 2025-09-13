@@ -117,6 +117,20 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Fondo azul
+ctx.fillStyle = "#87CEEB";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Suelo en la parte inferior
+ctx.fillStyle = "green";
+ctx.fillRect(0, canvas.height - 50, canvas.width, 50);
+
+function update() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // luego dibuja fondo, suelo, pipes, pájaro...
+}
+
+
 // Reiniciar juego
 restartBtn.addEventListener("click", startGame);
 
