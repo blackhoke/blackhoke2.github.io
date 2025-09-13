@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+#gameArea {
+  width: 400px;
+  height: 400px;
+  border: 2px solid #333;
+  margin: 20px auto;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+#target {
+  width: 40px;
+  height: 40px;
+  background: red;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#score, #timer {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
