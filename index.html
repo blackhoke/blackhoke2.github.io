@@ -950,10 +950,62 @@
   }
 </script>
 
+<script>
+(function() {
+  const DEFAULT_TABLE_ID = 'tecnmTable';
+  const DEFAULT_BTN_ID = 'ordenBtn';
+
+
+  window.toggleOrdenTabla = function(tableId = DEFAULT_TABLE_ID, btnId = DEFAULT_BTN_ID) {
+    const tabla = document.getElementById(tableId) || document.querySelector('table');
+    const btn = document.getElementById(btnId);
+
+    if (!tabla) {
+      console.error('toggleOrdenTabla: no se encontró la tabla. Asegúrate de usar el id correcto (por defecto "tecnmTable").');
+      return;
+    }
+
+    const tbody = tabla.tBodies[0];
+    if (!tbody) {
+      console.error('toggleOrdenTabla: la tabla no tiene <tbody>.');
+      return;
+    }
+
+
+    if (typeof tabla._ordenAscendente === 'undefined') tabla._ordenAscendente = true;
+    const asc = tabla._ordenAscendente;
+
+
+    const filas = Array.from(tbody.querySelectorAll('tr'));
+
+    filas.sort((a, b) => {
+      const aText = (a.querySelector('td') ? a.querySelector('td').innerText : '').trim().toLowerCase();
+      const bText = (b.querySelector('td') ? b.querySelector('td').innerText : '').trim().toLowerCase();
+      return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+    });
+
+
+    filas.forEach(f => tbody.appendChild(f));
+
+
+    tabla._ordenAscendente = !asc;
+    if (btn) btn.innerText = tabla._ordenAscendente ? 'Ordenar A→Z' : 'Ordenar Z→A';
+  };
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById(DEFAULT_BTN_ID);
+    const tabla = document.getElementById(DEFAULT_TABLE_ID);
+    if (btn) btn.innerText = (tabla && tabla._ordenAscendente) ? 'Ordenar A→Z' : 'Ordenar Z→A';
+  });
+})();
+</script>
+
 
 </body>
 
 </html>
+
 
 
 
