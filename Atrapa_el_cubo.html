@@ -51,17 +51,6 @@
       behavior: 'smooth' // Animación suave
     });
   }
-
-  // Opcional: mostrar el botón solo cuando el usuario hace scroll hacia abajo
-  const backToTopButton = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 200) { // aparece después de 200px
-      backToTopButton.style.display = 'block';
-    } else {
-      backToTopButton.style.display = 'none';
-    }
-  });
-
   // Inicialmente oculto
   backToTopButton.style.display = 'none';
 </script>
