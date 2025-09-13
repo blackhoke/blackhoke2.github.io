@@ -103,6 +103,7 @@
       <button onclick="showAll()">Mostrar Todos</button>
       <button onclick="filterByType('federal')">Federales</button>
       <button onclick="filterByType('descentralizado')">Descentralizados</button>
+      <button onclick="ordenarTabla()">Ordenar alfabéticamente</button>
     </div><table id="tecnmTable">
   <thead>
     <tr>
@@ -920,9 +921,26 @@
         }
       });
     }
-  </script></body>
+  </script>
+  <script>
+  function ordenarTabla() {
+    let tabla = document.getElementById("tablaTec");
+    let filas = Array.from(tabla.tBodies[0].rows);
+    filas.sort((a, b) => {
+      let x = a.cells[0].innerText.toLowerCase();
+      let y = b.cells[0].innerText.toLowerCase();
+      return x.localeCompare(y);
+    });
+    let tbody = tabla.tBodies[0];
+    tbody.innerHTML = "";
+    filas.forEach(fila => tbody.appendChild(fila));
+  }
+</script>
+
+</body>
 
 </html>
+
 
 
 
