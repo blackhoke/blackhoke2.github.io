@@ -138,5 +138,14 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+  // Función para hacer scroll al inicio de la página
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Animación suave
+    });
+  }
+
 // Iniciar juego al cargar
 startGame();
+
